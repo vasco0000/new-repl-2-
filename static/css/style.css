@@ -1,18 +1,44 @@
 :root {
-    --primary-color: #ff6b6b;
-    --secondary-color: #f7d794;
+    --primary-color: #ff8fa3;
+    --secondary-color: #ffd6e0;
+    --accent-color: #ffb3c6;
     --text-color: #4a4a4a;
-    --background-color: #fff5f5;
+    --background-color: #fff0f3;
+}
+
+@keyframes floatingHearts {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.floating-heart {
+    position: fixed;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    z-index: 1;
+    pointer-events: none;
+    animation: floatingHearts 15s linear infinite;
 }
 
 body {
     background-color: var(--background-color);
-    background-image: url('https://images.unsplash.com/photo-1517607648415-b431854daa86');
+    background-image: linear-gradient(45deg, var(--background-color) 0%, #fff8f8 100%);
     background-size: cover;
     background-attachment: fixed;
     color: var(--text-color);
     font-family: 'Playfair Display', serif;
     line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .love-letter-container {
