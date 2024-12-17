@@ -1,7 +1,7 @@
 // Music Player Class
 class MusicPlayer {
     constructor() {
-        this.audio = new Audio('https://drive.google.com/uc?export=download&id=1QwCtvwWx9tBoRwfXu4Ya9ti7uv7xwzCq');
+        this.audio = new Audio('/static/@rzchnnel.mp3');
         this.isPlaying = false;
         this.audio.loop = true;
     }

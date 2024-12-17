@@ -6,6 +6,46 @@
     --text-color: #4a4a4a;
     --background-color: #fff0f3; /*This was missing from modified but present in original, so I've added it back*/
 }
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.handwritten {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.3rem;
+}
+
+.background-cat {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 200px;
+    height: 200px;
+    opacity: 0.3;
+    pointer-events: none;
+    animation: catFloat 3s ease-in-out infinite;
+    z-index: -1;
+}
+
+.background-cat img {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes catFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.glowing-heart {
+    font-size: 3rem;
+    text-align: center;
+    margin: 20px 0;
+    animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5)); }
+    50% { transform: scale(1.2); filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.8)); }
+}
 
 /* Blinking Prompt Animation */
 @keyframes blink {
