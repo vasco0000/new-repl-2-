@@ -1,4 +1,58 @@
+// Music Player Class
+class MusicPlayer {
+    constructor() {
+        this.songs = {
+            perfect: {
+                url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+                title: 'Perfect - Ed Sheeran'
+            },
+            alliwantisyou: {
+                url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+                title: 'All I Want Is You - U2'
+            },
+            athousandyears: {
+                url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+                title: 'A Thousand Years - Christina Perri'
+            }
+        };
+        this.currentAudio = null;
+        this.isPlaying = false;
+    }
+
+    play(songKey) {
+        // Stop current song if playing
+        if (this.currentAudio) {
+            this.stop();
+        }
+
+        // Create and play new audio
+        const song = this.songs[songKey];
+        if (song) {
+            this.currentAudio = new Audio(song.url);
+            this.currentAudio.play();
+            this.isPlaying = true;
+            return true;
+        }
+        return false;
+    }
+
+    stop() {
+        if (this.currentAudio) {
+            this.currentAudio.pause();
+            this.currentAudio.currentTime = 0;
+            this.isPlaying = false;
+        }
+    }
+
+    getCurrentSong() {
+        return this.currentAudio ? this.currentAudio.src : null;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize music player
+    const musicPlayer = new MusicPlayer();
+
     // Create floating hearts
     function createHeart() {
         const heart = document.createElement('div');
@@ -23,17 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(createHeart, Math.random() * 5000);
     }
 
-    // Smooth scroll functionality
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Song buttons hover effect
+    // Song buttons functionality
     const songButtons = document.querySelectorAll('.song-btn');
     songButtons.forEach(button => {
         button.addEventListener('mouseenter', function() {
@@ -45,13 +89,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         button.addEventListener('click', function() {
+            const songKey = this.dataset.song;
+            
             // Remove active class from all buttons
             songButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
             
-            // Future implementation: Play selected song
-            console.log('Selected song:', this.dataset.song);
+            // If clicking the same song that's playing, stop it
+            if (musicPlayer.isPlaying && musicPlayer.getCurrentSong().includes(songKey)) {
+                musicPlayer.stop();
+                this.classList.remove('active');
+            } else {
+                // Play the selected song and add active class
+                if (musicPlayer.play(songKey)) {
+                    this.classList.add('active');
+                }
+            }
         });
     });
 });
