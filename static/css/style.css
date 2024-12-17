@@ -52,27 +52,6 @@
     font-size: 1.3rem;
 }
 
-.background-cat {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    width: 200px;
-    height: 200px;
-    opacity: 0.3;
-    pointer-events: none;
-    animation: catFloat 3s ease-in-out infinite;
-    z-index: -1;
-}
-
-.background-cat img {
-    width: 100%;
-    height: 100%;
-}
-
-@keyframes catFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
 
 .glowing-heart {
     font-size: 3rem;
@@ -109,26 +88,14 @@
     }
 }
 
-/* Cat Animation */
-@keyframes catWalk {
-    0% { transform: translateX(-100%); }
-    45% { transform: translateX(0); }
-    55% { transform: translateX(0); }
-    100% { transform: translateX(100%); }
-}
-
-@keyframes catBlink {
-    0%, 48%, 52%, 100% { height: 6px; }
-    50% { height: 1px; }
-}
 
 @keyframes floatingHearts {
     0% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(100vh) rotate(0deg);
         opacity: 0;
     }
     50% {
-        opacity: 0.6;
+        opacity: 0.8;
     }
     100% {
         transform: translateY(-100vh) rotate(360deg);
@@ -138,11 +105,11 @@
 
 .floating-heart {
     position: fixed;
-    font-size: 1.5rem;
     color: var(--primary-color);
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
     animation: floatingHearts 15s linear infinite;
+    text-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
 }
 
 body {
@@ -300,73 +267,6 @@ body {
     font-size: 1.5rem;
 }
 
-.cat-container {
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    pointer-events: none;
-}
-
-.cat {
-    width: 40px;
-    height: 40px;
-    background-color: #555;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    animation: catWalk 15s infinite linear;
-}
-
-@keyframes catWalk {
-    0% { left: -50px; }
-    100% { left: calc(100% + 50px); }
-}
-
-.cat-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-.eyes {
-    position: absolute;
-    top: 12px;
-    left: 8px;
-    width: 6px;
-    height: 6px;
-    background: #fff;
-    border-radius: 50%;
-    animation: catBlink 4s infinite;
-}
-
-.eyes::before {
-    content: '';
-    position: absolute;
-    left: 18px;
-    width: 6px;
-    height: 6px;
-    background: #fff;
-    border-radius: 50%;
-}
-
-@keyframes catBlink {
-    0%, 90%, 100% { transform: scaleY(1); }
-    95% { transform: scaleY(0.1); }
-}
-
-.nose {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    background: pink;
-    border-radius: 50%;
-}
 
 /* Mobile Responsive Adjustments */
 @media (max-width: 768px) {

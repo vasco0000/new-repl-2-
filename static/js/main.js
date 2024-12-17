@@ -62,15 +62,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Create floating hearts
+    // Create floating hearts with varied styles
     function createHeart() {
         const heart = document.createElement('div');
         heart.className = 'floating-heart';
-        heart.innerHTML = '❤';
+        heart.innerHTML = Math.random() > 0.5 ? '❤' : '💖';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = Math.random() * 10 + 5 + 's';
-        heart.style.opacity = Math.random();
-        heart.style.fontSize = (Math.random() * 1.5 + 0.5) + 'rem';
+        heart.style.animationDuration = Math.random() * 8 + 7 + 's';
+        heart.style.opacity = Math.random() * 0.5 + 0.3;
+        heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+        heart.style.filter = `hue-rotate(${Math.random() * 40 - 20}deg)`;
         document.body.appendChild(heart);
         
         setTimeout(() => {
@@ -78,12 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 15000);
     }
 
-    // Create hearts periodically
-    setInterval(createHeart, 1000);
+    // Create hearts more frequently for a romantic atmosphere
+    setInterval(createHeart, 800);
 
     // Create initial hearts
-    for(let i = 0; i < 10; i++) {
-        setTimeout(createHeart, Math.random() * 5000);
+    for(let i = 0; i < 15; i++) {
+        setTimeout(createHeart, Math.random() * 3000);
     }
 
     // Music toggle button functionality with better mobile support
