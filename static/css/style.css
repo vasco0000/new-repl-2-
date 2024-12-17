@@ -1,11 +1,10 @@
 :root {
-    --primary-color: #ff8fa3;
-    --secondary-color: #ffd6e0;
-    --accent-color: #ffb3c6;
+    --primary-color: #ff69b4;
+    --secondary-color: #e6e6fa;
+    --envelope-color: #fff5f5;
+    --envelope-shadow: #ffebeb;
     --text-color: #4a4a4a;
-    --background-color: #fff0f3;
-    --envelope-color: #f8e3e8;
-    --envelope-shadow: #e8d3d8;
+    --background-color: #fff0f3; /*This was missing from modified but present in original, so I've added it back*/
 }
 
 /* Blinking Prompt Animation */
@@ -68,146 +67,27 @@
 }
 
 body {
-    background-color: var(--background-color);
-    background-image: linear-gradient(45deg, var(--background-color) 0%, #fff8f8 100%);
-    background-size: cover;
-    background-attachment: fixed;
-    color: var(--text-color);
     font-family: 'Playfair Display', serif;
-    line-height: 1.6;
-    position: relative;
-    overflow-x: hidden;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #fff 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .love-letter-container {
-    min-height: 100vh;
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.letter-content {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 3rem;
     max-width: 800px;
-    margin: auto;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    position: relative;
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-.main-title {
-    font-family: 'Dancing Script', cursive;
-    color: var(--primary-color);
+    margin: 50px auto;
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
 }
 
-.dear-title {
-    font-family: 'Dancing Script', cursive;
-    color: var(--text-color);
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.decorative-line {
-    text-align: center;
-    margin: 2rem 0;
-}
-
-.decorative-line i {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    animation: pulse 2s infinite;
-}
-
-.letter-text {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    line-height: 1.8;
-}
-
-.music-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    z-index: 1000;
-}
-
-.music-toggle:hover {
-    transform: scale(1.1);
-    background-color: #ff8585;
-}
-
-.music-toggle.playing {
-    animation: pulse 2s infinite;
-}
-
-.interactive-section {
-    min-height: 200px;
-    margin-top: 2rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding-top: 2rem;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .love-letter-container {
-        padding: 0.5rem;
-        min-height: 100dvh;
-    }
-    
-    .letter-content {
-        padding: 1.5rem;
-        margin: 0.5rem;
-        width: calc(100% - 1rem);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    }
-    
-    .main-title {
 .prompt-message {
     position: fixed;
     top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 80px;
     z-index: 1000;
     font-family: 'Dancing Script', cursive;
     font-size: 1.5rem;
@@ -218,6 +98,35 @@ body {
     animation: blink 2s infinite;
 }
 
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+.music-toggle.playing {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
 .envelope {
     width: 300px;
     height: 200px;
@@ -226,6 +135,7 @@ body {
     margin: 50px auto;
     cursor: pointer;
     transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .envelope:hover {
@@ -242,20 +152,69 @@ body {
     clip-path: polygon(0 0, 50% 50%, 100% 0);
     transform-origin: top;
     transition: transform 0.5s ease;
+    z-index: 2;
 }
 
 .envelope.open .envelope-flap {
-    animation: openEnvelope 0.5s forwards;
+    transform: rotateX(180deg);
+}
+
+.envelope-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--envelope-color);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.letter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
 }
 
 .letter-content.hidden {
     display: none;
-    opacity: 0;
 }
 
 .letter-content.reveal {
-    display: block;
-    animation: revealLetter 1s forwards;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.dear-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.letter-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.decorative-line {
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
 }
 
 .cat-container {
@@ -272,8 +231,15 @@ body {
     height: 40px;
     background-color: #555;
     border-radius: 50%;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     animation: catWalk 15s infinite linear;
+}
+
+@keyframes catWalk {
+    0% { left: -50px; }
+    100% { left: calc(100% + 50px); }
 }
 
 .cat-face {
@@ -285,6 +251,7 @@ body {
 .eyes {
     position: absolute;
     top: 12px;
+    left: 8px;
     width: 6px;
     height: 6px;
     background: #fff;
@@ -295,12 +262,16 @@ body {
 .eyes::before {
     content: '';
     position: absolute;
-    right: 20px;
+    left: 18px;
     width: 6px;
     height: 6px;
     background: #fff;
     border-radius: 50%;
-    animation: catBlink 4s infinite;
+}
+
+@keyframes catBlink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
 }
 
 .nose {
@@ -323,14 +294,33 @@ body {
     
     .prompt-message {
         font-size: 1.2rem;
-        top: 10px;
+        right: 70px;
     }
     
     .cat {
         width: 30px;
         height: 30px;
     }
-}
+    
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .dear-title {
+        font-size: 1.6rem;
+    }
+    
+    .letter-text {
+        font-size: 1rem;
+        padding: 20px;
+    }
+    .letter-content{
+        padding: 1.5rem;
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+    .main-title {
         font-size: 1.8rem;
         margin-bottom: 1rem;
     }

@@ -1,7 +1,7 @@
 // Music Player Class
 class MusicPlayer {
     constructor() {
-        this.audio = new Audio('https://drive.google.com/file/d/1QwCtvwWx9tBoRwfXu4Ya9ti7uv7xwzCq/view?usp=sharing');
+        this.audio = new Audio('https://drive.google.com/uc?export=download&id=1QwCtvwWx9tBoRwfXu4Ya9ti7uv7xwzCq');
         this.isPlaying = false;
         this.audio.loop = true;
     }
@@ -11,7 +11,9 @@ class MusicPlayer {
             this.audio.pause();
             this.isPlaying = false;
         } else {
-            this.audio.play();
+            this.audio.play().catch(error => {
+                console.error('Error playing audio:', error);
+            });
             this.isPlaying = true;
         }
         return this.isPlaying;
@@ -27,15 +29,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const letterContent = document.querySelector('.letter-content');
     const promptMessage = document.querySelector('.prompt-message');
 
-    envelope.addEventListener('click', function() {
-        this.classList.add('open');
-        promptMessage.style.display = 'none';
-        
-        setTimeout(() => {
-            letterContent.classList.remove('hidden');
-            letterContent.classList.add('reveal');
-        }, 500);
-    });
+    if (envelope) {
+        envelope.addEventListener('click', function() {
+            this.classList.add('open');
+            promptMessage.style.display = 'none';
+            
+            setTimeout(() => {
+                letterContent.classList.remove('hidden');
+                letterContent.classList.add('reveal');
+                // Start playing music when letter is revealed
+                if (!musicPlayer.isPlaying) {
+                    musicPlayer.toggle();
+                    document.getElementById('musicToggle').classList.add('playing');
+                    document.getElementById('musicToggle').innerHTML = '<i class="fas fa-pause"></i>';
+                }
+            }, 500);
+        });
+    }
 
     // Create floating hearts
     function createHeart() {
@@ -63,9 +73,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Music toggle button functionality
     const musicToggle = document.getElementById('musicToggle');
-    musicToggle.addEventListener('click', function() {
-        const isPlaying = musicPlayer.toggle();
-        this.classList.toggle('playing', isPlaying);
-        this.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-music"></i>';
-    });
+    if (musicToggle) {
+        musicToggle.addEventListener('click', function() {
+            const isPlaying = musicPlayer.toggle();
+            this.classList.toggle('playing', isPlaying);
+            this.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-music"></i>';
+        });
+    }
 });
