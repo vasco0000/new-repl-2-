@@ -1,3 +1,42 @@
+/* Mobile-first styles */
+:root {
+    --primary-color: #ff69b4;
+    --secondary-color: #e6e6fa;
+    --envelope-color: #fff5f5;
+    --envelope-shadow: #ffebeb;
+    --text-color: #4a4a4a;
+    --background-color: #fff0f3;
+}
+
+.envelope-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    text-align: center;
+    width: 90%;
+    max-width: 300px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+.blink {
+    animation: blink 2s infinite;
+    display: inline-block;
+    text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+}
 :root {
     --primary-color: #ff69b4;
     --secondary-color: #e6e6fa;
@@ -124,14 +163,18 @@ body {
     text-align: center;
 }
 
-.prompt-message {
-    position: fixed;
-    top: 20px;
-    right: 80px;
+.envelope-message {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
     font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--primary-color);
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
 }
 
 .blink {

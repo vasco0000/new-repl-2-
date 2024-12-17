@@ -1,9 +1,16 @@
 // Music Player Class
 class MusicPlayer {
     constructor() {
-        this.audio = new Audio('/static/@rzchnnel.mp3');
+        this.audio = new Audio('/static/music/rzchnnel.mp3');
+        this.audio.preload = 'auto';
         this.isPlaying = false;
         this.audio.loop = true;
+        // Add better mobile support
+        document.addEventListener('touchstart', () => {
+            if (this.audio.paused && !this.isPlaying) {
+                this.audio.load();
+            }
+        }, { once: true });
     }
 
     toggle() {
@@ -11,9 +18,12 @@ class MusicPlayer {
             this.audio.pause();
             this.isPlaying = false;
         } else {
-            this.audio.play().catch(error => {
-                console.error('Error playing audio:', error);
-            });
+            const playPromise = this.audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+            }
             this.isPlaying = true;
         }
         return this.isPlaying;
@@ -27,12 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Envelope and Letter Animation
     const envelope = document.getElementById('envelope');
     const letterContent = document.querySelector('.letter-content');
-    const promptMessage = document.querySelector('.prompt-message');
 
     if (envelope) {
-        envelope.addEventListener('click', function() {
-            this.classList.add('open');
-            promptMessage.style.display = 'none';
+        const openLetter = () => {
+            envelope.classList.add('open');
             
             setTimeout(() => {
                 letterContent.classList.remove('hidden');
@@ -44,6 +52,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('musicToggle').innerHTML = '<i class="fas fa-pause"></i>';
                 }
             }, 500);
+        };
+
+        // Support both click and touch events
+        envelope.addEventListener('click', openLetter);
+        envelope.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            openLetter();
         });
     }
 
@@ -71,13 +86,17 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(createHeart, Math.random() * 5000);
     }
 
-    // Music toggle button functionality
+    // Music toggle button functionality with better mobile support
     const musicToggle = document.getElementById('musicToggle');
     if (musicToggle) {
-        musicToggle.addEventListener('click', function() {
+        const handleMusicToggle = (e) => {
+            e.preventDefault();
             const isPlaying = musicPlayer.toggle();
-            this.classList.toggle('playing', isPlaying);
-            this.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-music"></i>';
-        });
+            musicToggle.classList.toggle('playing', isPlaying);
+            musicToggle.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-music"></i>';
+        };
+
+        musicToggle.addEventListener('click', handleMusicToggle);
+        musicToggle.addEventListener('touchend', handleMusicToggle);
     }
 });
