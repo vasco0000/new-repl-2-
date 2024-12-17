@@ -1,7 +1,7 @@
 // Music Player Class
 class MusicPlayer {
     constructor() {
-        this.audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        this.audio = new Audio('https://drive.google.com/file/d/1QwCtvwWx9tBoRwfXu4Ya9ti7uv7xwzCq/view?usp=sharing');
         this.isPlaying = false;
         this.audio.loop = true;
     }
@@ -21,6 +21,21 @@ class MusicPlayer {
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize music player
     const musicPlayer = new MusicPlayer();
+
+    // Envelope and Letter Animation
+    const envelope = document.getElementById('envelope');
+    const letterContent = document.querySelector('.letter-content');
+    const promptMessage = document.querySelector('.prompt-message');
+
+    envelope.addEventListener('click', function() {
+        this.classList.add('open');
+        promptMessage.style.display = 'none';
+        
+        setTimeout(() => {
+            letterContent.classList.remove('hidden');
+            letterContent.classList.add('reveal');
+        }, 500);
+    });
 
     // Create floating hearts
     function createHeart() {

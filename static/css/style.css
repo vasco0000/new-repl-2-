@@ -4,6 +4,44 @@
     --accent-color: #ffb3c6;
     --text-color: #4a4a4a;
     --background-color: #fff0f3;
+    --envelope-color: #f8e3e8;
+    --envelope-shadow: #e8d3d8;
+}
+
+/* Blinking Prompt Animation */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Envelope and Letter Animations */
+@keyframes openEnvelope {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(180deg); }
+}
+
+@keyframes revealLetter {
+    0% { 
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateY(-20px) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Cat Animation */
+@keyframes catWalk {
+    0% { transform: translateX(-100%); }
+    45% { transform: translateX(0); }
+    55% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes catBlink {
+    0%, 48%, 52%, 100% { height: 6px; }
+    50% { height: 1px; }
 }
 
 @keyframes floatingHearts {
@@ -165,6 +203,134 @@ body {
     }
     
     .main-title {
+.prompt-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.blink {
+    animation: blink 2s infinite;
+}
+
+.envelope {
+    width: 300px;
+    height: 200px;
+    background-color: var(--envelope-color);
+    position: relative;
+    margin: 50px auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+    transform: scale(1.05);
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: var(--envelope-shadow);
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+.envelope.open .envelope-flap {
+    animation: openEnvelope 0.5s forwards;
+}
+
+.letter-content.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.letter-content.reveal {
+    display: block;
+    animation: revealLetter 1s forwards;
+}
+
+.cat-container {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    pointer-events: none;
+}
+
+.cat {
+    width: 40px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 50%;
+    position: relative;
+    animation: catWalk 15s infinite linear;
+}
+
+.cat-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.eyes {
+    position: absolute;
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    animation: catBlink 4s infinite;
+}
+
+.eyes::before {
+    content: '';
+    position: absolute;
+    right: 20px;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    animation: catBlink 4s infinite;
+}
+
+.nose {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: pink;
+    border-radius: 50%;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .envelope {
+        width: 250px;
+        height: 166px;
+    }
+    
+    .prompt-message {
+        font-size: 1.2rem;
+        top: 10px;
+    }
+    
+    .cat {
+        width: 30px;
+        height: 30px;
+    }
+}
         font-size: 1.8rem;
         margin-bottom: 1rem;
     }
