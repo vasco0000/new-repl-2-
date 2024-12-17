@@ -8,34 +8,34 @@
     --background-color: #fff0f3;
 }
 
-.envelope-message {
-    position: fixed;
-    top: 20px;
+.envelope-text {
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    font-family: 'Pacifico', cursive;
-    font-size: 1.2rem;
+    transform: translate(-50%, -50%);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
     color: var(--primary-color);
     text-align: center;
     width: 90%;
-    max-width: 300px;
-    background-color: rgba(255, 255, 255, 0.9);
     padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    animation: float 3s ease-in-out infinite;
+    animation: gentle-pulse 2s infinite;
+    text-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
+    z-index: 3;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-10px); }
+@keyframes gentle-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
 }
 
-.blink {
-    animation: blink 2s infinite;
-    display: inline-block;
-    text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+/* Mobile optimization for envelope text */
+@media (max-width: 768px) {
+    .envelope-text {
+        font-size: 0.9rem;
+        width: 85%;
+        padding: 5px;
+    }
 }
 :root {
     --primary-color: #ff69b4;
