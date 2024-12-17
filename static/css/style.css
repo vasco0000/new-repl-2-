@@ -134,22 +134,52 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .love-letter-container {
-        padding: 1rem;
+        padding: 0.5rem;
+        min-height: 100dvh;
     }
     
     .letter-content {
-        padding: 2rem;
+        padding: 1.5rem;
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     }
     
     .main-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
     }
     
     .dear-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
     }
     
     .letter-text {
         font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .song-btn {
+        width: 100%;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+    }
+
+    .decorative-line {
+        margin: 1.5rem 0;
+    }
+
+    .songs-section {
+        margin: 1.5rem 0;
+    }
+
+    .song-buttons {
+        gap: 0.5rem;
+    }
+
+    body {
+        background-position: center;
     }
 }
