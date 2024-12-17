@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message for My Soulmate</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="love-letter-container">
+        <div class="letter-content">
+            <h1 class="main-title">A Special Message for My Soulmate</h1>
+            
+            <div class="decorative-line">
+                <i class="fas fa-heart"></i>
+            </div>
+            
+            <h2 class="dear-title">For my dearest</h2>
+            
+            <div class="letter-text">
+                <p>My beloved,</p>
+                <p>I want to start by saying I'm sorry for all the times I may have hurt you or failed to show you just how much you mean to me. You are the light that guides me through my darkest days, the warmth that fills my heart with joy, and the love that makes my life complete.</p>
+                <p>Every moment with you is precious, and I promise to cherish and protect our love forever.</p>
+                <p>With all my heart,<br>Your soulmate</p>
+            </div>
+            
+            <div class="songs-section">
+                <h3>Our Special Songs</h3>
+                <div class="song-buttons">
+                    <button class="btn song-btn" data-song="perfect">
+                        <i class="fas fa-music"></i> Perfect - Ed Sheeran
+                    </button>
+                    <button class="btn song-btn" data-song="alliwantisyou">
+                        <i class="fas fa-music"></i> All I Want Is You - U2
+                    </button>
+                    <button class="btn song-btn" data-song="athousandyears">
+                        <i class="fas fa-music"></i> A Thousand Years - Christina Perri
+                    </button>
+                </div>
+            </div>
+            
+            <div id="interactive-area" class="interactive-section">
+                <!-- Reserved for future interactive elements -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #f7d794;
+    --text-color: #4a4a4a;
+    --background-color: #fff5f5;
+}
+
+body {
+    background-color: var(--background-color);
+    background-image: url('https://images.unsplash.com/photo-1517607648415-b431854daa86');
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text-color);
+    font-family: 'Playfair Display', serif;
+    line-height: 1.6;
+}
+
+.love-letter-container {
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dear-title {
+    font-family: 'Dancing Script', cursive;
+    color: var(--text-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.decorative-line {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.decorative-line i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+.letter-text {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.songs-section {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.songs-section h3 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.song-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.song-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    width: 80%;
+    max-width: 300px;
+}
+
+.song-btn:hover {
+    background-color: #ff8585;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.interactive-section {
+    min-height: 200px;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 2rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .love-letter-container {
+        padding: 1rem;
+    }
+    
+    .letter-content {
+        padding: 2rem;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .dear-title {
+        font-size: 1.8rem;
+    }
+    
+    .letter-text {
+        font-size: 1rem;
+    }
+}
