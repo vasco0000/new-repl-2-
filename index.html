@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message for My Soulmate</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="love-letter-container">
+        <div class="envelope" id="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-content">
+                <div class="envelope-text">you could punch to open this but your phone will break, so just tap here my baby ❤️</div>
+            </div>
+        </div>
+        
+        <div class="letter-content hidden">
+            <h1 class="main-title">to my soulmate</h1>
+            
+            <div class="glowing-heart">❤️</div>
+            
+            <div class="letter-text">
+                <p>Good Morning my sleepyhead, I hope you had a great sleep last night,</p>
+                <p>I really want to clear something that I feel comes mostly from misunderstandings from both sides, I know sometime what i say or ask you to do/not do might sound controlling or you might get the wrong idea of me using a wrong tone because all of it happens on text and we don't really see our actual expressions or feel the actual tone or intention, it seems to me that whatever i say sounds in a tone that i might not be saying in but you imagine me saying that way and i'm not putting this on you because it has with the way i say it + texting can be like that, so although i know it will definitely be tougher for both of us but it will still be better to talk on a call and prevent any further misunderstanding, I don't want to do anything only my way and i don't want to tell you what to do with every single thing you do nor do i like doing that, and i want to know your perspective, I am ready to go through all of it with you even if we have to go through very difficult things, I am flexible to change if it's for the better of us so that we can meet in a meeting point where both of us are satisfied with the outcome, I love you to the moon and back my heart, you are my happiness my baby.</p>
+                <p>shall we hop on a call tomorrow when you get back from office if you went if not around whenever you woke up and were free?</p>
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    <button id="musicToggle" class="music-toggle">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

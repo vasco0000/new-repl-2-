@@ -1,0 +1,343 @@
+/* Mobile-first styles */
+:root {
+    --primary-color: #ff69b4;
+    --secondary-color: #e6e6fa;
+    --envelope-color: #fff5f5;
+    --envelope-shadow: #ffebeb;
+    --text-color: #4a4a4a;
+    --background-color: #fff0f3;
+}
+
+.envelope-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    text-align: center;
+    width: 90%;
+    padding: 10px;
+    animation: gentle-pulse 2s infinite;
+    text-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
+    z-index: 3;
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* Mobile optimization for envelope text */
+@media (max-width: 768px) {
+    .envelope-text {
+        font-size: 0.9rem;
+        width: 85%;
+        padding: 5px;
+    }
+}
+:root {
+    --primary-color: #ff69b4;
+    --secondary-color: #e6e6fa;
+    --envelope-color: #fff5f5;
+    --envelope-shadow: #ffebeb;
+    --text-color: #4a4a4a;
+    --background-color: #fff0f3; /*This was missing from modified but present in original, so I've added it back*/
+}
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.handwritten {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.3rem;
+}
+
+
+.glowing-heart {
+    font-size: 3rem;
+    text-align: center;
+    margin: 20px 0;
+    animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5)); }
+    50% { transform: scale(1.2); filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.8)); }
+}
+
+/* Blinking Prompt Animation */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Envelope and Letter Animations */
+@keyframes openEnvelope {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(180deg); }
+}
+
+@keyframes revealLetter {
+    0% { 
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateY(-20px) scale(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes floatingHearts {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.floating-heart {
+    position: fixed;
+    color: var(--primary-color);
+    z-index: -1;
+    pointer-events: none;
+    animation: floatingHearts 15s linear infinite;
+    text-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #fff 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.love-letter-container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.envelope-message {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.blink {
+    animation: blink 2s infinite;
+}
+
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+.music-toggle.playing {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.envelope {
+    width: 300px;
+    height: 200px;
+    background-color: var(--envelope-color);
+    position: relative;
+    margin: 50px auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.envelope:hover {
+    transform: scale(1.05);
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: var(--envelope-shadow);
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+    transform-origin: top;
+    transition: transform 0.5s ease;
+    z-index: 2;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--envelope-color);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.letter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.letter-content.hidden {
+    display: none;
+}
+
+.letter-content.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.dear-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.letter-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.decorative-line {
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .envelope {
+        width: 250px;
+        height: 166px;
+    }
+    
+    .prompt-message {
+        font-size: 1.2rem;
+        right: 70px;
+    }
+    
+    .cat {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .dear-title {
+        font-size: 1.6rem;
+    }
+    
+    .letter-text {
+        font-size: 1rem;
+        padding: 20px;
+    }
+    .letter-content{
+        padding: 1.5rem;
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+    .main-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .dear-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+    
+    .letter-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .song-btn {
+        width: 100%;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+    }
+
+    .decorative-line {
+        margin: 1.5rem 0;
+    }
+
+    .songs-section {
+        margin: 1.5rem 0;
+    }
+
+    .song-buttons {
+        gap: 0.5rem;
+    }
+
+    body {
+        background-position: center;
+    }
+}
